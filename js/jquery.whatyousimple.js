@@ -15,14 +15,14 @@
 							undo: {name: 'Undo', title: 'Undo', html: '&larr;', 'class': false},
 							redo: {name: 'Redo', title: 'Redo', html: '&rarr;', 'class': false}
 							},
-						div: {'class': 'whatyousimple-textarea'}
+						div: {'class': 'whatyousimple'}
 						};
 		
 		var options = $.extend(true, defaults, options);
 		
 		return this.each( function() {
 			
-			var wrapper = $('<div>');
+			var wrapper = $('<div>', {'class': options.div['class']);
 			var section = $('<section>');
 			var ul = $('<ul>');
 			
@@ -40,7 +40,7 @@
 			
 			section.append(ul);
 			
-			var div = $('<div>', {'class': options.div['class'], contentEditable: true});
+			var div = $('<div>', {'class': 'textarea', contentEditable: true});
 			div.html($(this).val());
 			
 			wrapper.append(section);
