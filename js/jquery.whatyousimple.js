@@ -22,7 +22,7 @@
 		
 		return this.each( function() {
 			
-			var wrapper = $('<div>', {'class': options.div['class']);
+			var wrapper = $('<div>', {'class': options.div['class']});
 			var section = $('<section>');
 			var ul = $('<ul>');
 			

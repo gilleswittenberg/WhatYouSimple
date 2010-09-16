@@ -1,1 +1,1 @@
-$('textarea').whatYouSimple();$('div.whatyousimple-textarea').focus(function(){ alert('focus')});
+$('textarea').whatYouSimple();$('div.whatyousimple > div.textarea').focus(function(){ alert('focus')});
