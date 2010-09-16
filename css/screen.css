@@ -3,22 +3,22 @@ font-family:Arial;
 margin:28px;
 }
 
-section{
+menu{
 margin-bottom:4px;
 }
 
-section ul{
+menu ul{
 margin:0px;
 padding:0px;
 }
 
-section li{
+menu li{
 display:inline;
 list-style:none;
 margin-right:4px;
 }
 
-section a{
+menu a{
 display:inline-block;
 width:32px;
 height:32px;

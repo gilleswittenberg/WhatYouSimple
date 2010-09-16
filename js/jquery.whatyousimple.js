@@ -23,7 +23,7 @@
 		return this.each( function() {
 			
 			var wrapper = $('<div>', {'class': options.div['class']});
-			var section = $('<section>');
+			var menu = $('<menu>');
 			var ul = $('<ul>');
 			
 			$.each(options.controls, function(key, value) {
@@ -38,12 +38,12 @@
 				ul.append(li);
 			});
 			
-			section.append(ul);
+			menu.append(ul);
 			
 			var div = $('<div>', {'class': 'textarea', contentEditable: true});
 			div.html($(this).val());
 			
-			wrapper.append(section);
+			wrapper.append(menu);
 			wrapper.append(div);
 			
 			$(this).replaceWith(wrapper);
