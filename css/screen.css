@@ -36,7 +36,7 @@ cursor:text;
 background-color:#EEE;
 border:1px solid #DDD;
 width:560px;
-height:400px;
+min-height:400px;
 padding:12px;
 font-family:Times;
 }
