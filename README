@@ -1,0 +1,3 @@
+Experimental wysiwyg editor jQuery plugin, using execCommand function.
+
+See also: http://www.quirksmode.org/dom/execCommand.html.

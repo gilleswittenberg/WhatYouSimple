@@ -1,0 +1,1 @@
+$('textarea').whatYouSimple();$('div.whatyousimple-textarea').focus(function(){ alert('focus')});

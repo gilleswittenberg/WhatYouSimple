@@ -1,0 +1,41 @@
+body{
+font-family:Arial;
+margin:28px;
+}
+
+section{
+margin-bottom:4px;
+}
+
+section ul{
+margin:0px;
+padding:0px;
+}
+
+section li{
+display:inline;
+list-style:none;
+margin-right:4px;
+}
+
+section a{
+display:inline-block;
+width:32px;
+height:32px;
+background-color:#DDD;
+color:#000;
+font-size:24px;
+text-decoration:none;
+text-align:center;
+vertical-align:middle;
+}
+
+div.whatyousimple-textarea{
+cursor:text;
+background-color:#EEE;
+border:1px solid #DDD;
+width:560px;
+height:400px;
+padding:12px;
+font-family:Times;
+}
