@@ -18,7 +18,7 @@
 						div: {'class': 'whatyousimple'}
 						};
 		
-		var options = $.extend(true, defaults, options);
+		options = $.extend(true, defaults, options);
 		
 		return this.each( function() {
 			
@@ -63,10 +63,10 @@
 					}
 				}
 				else{
-					document.execCommand(options.controls[control]['name'], false, false);
+					document.execCommand(options.controls[control].name, false, false);
 				}
 			}
 		});
-	}
+	};
 	
 })(jQuery);
