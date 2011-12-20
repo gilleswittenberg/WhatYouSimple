@@ -53,7 +53,7 @@
 			function clicked(e) {
 				e.preventDefault();
 				control = $(this).attr('data-control');
-				if(control == 'a'){
+				if(control === 'a'){
 					var url = prompt(options.controls.a.message, 'http://');
 					if(url){
 						document.execCommand('CreateLink', false, url);
@@ -65,4 +65,4 @@
 			}
 		});
 	};
-})(jQuery);
+}(jQuery));
