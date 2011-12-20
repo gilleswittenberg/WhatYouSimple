@@ -52,7 +52,7 @@
 
 			function clicked(e) {
 				e.preventDefault();
-				control = $(this).attr('data-control');
+				var control = $(this).attr('data-control');
 				if(control === 'a'){
 					var url = prompt(options.controls.a.message, 'http://');
 					if(url){
