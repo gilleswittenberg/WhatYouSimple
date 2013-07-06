@@ -40,4 +40,10 @@ width:560px;
 min-height:400px;
 padding:12px;
 font-family:Times;
+margin-bottom:12px;
+}
+
+div.textarea div, div.textarea p{
+margin:0px;
+padding:0px;
 }

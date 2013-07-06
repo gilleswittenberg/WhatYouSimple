@@ -1,6 +1,5 @@
-(function($) {
-
-	$.fn.whatYouSimple = function(options) {
+(function ($) {
+	$.fn.whatYouSimple = function (options) {
 
 		var defaults = {
 			controls: {
@@ -18,23 +17,25 @@
 			},
 			div: {
 				'class': 'whatyousimple'
-			}
+			},
+			cleanHtml: true
 		};
 		options = $.extend(true, defaults, options);
 
-		return this.each( function() {
-
-			var wrapper = $('<div>', {'class': options.div['class']});
-			var menu = $('<menu>');
+		return this.each(function () {
 			var ul = $('<ul>');
+			var menu = $('<menu>');
+			var div;
+			var wrapper = $('<div>', {'class': options.div['class']});
 
 			$.each(options.controls, function(key, value) {
-				var li = $('<li>');
 				var attributes = {'data-control': key, href: '', title: value.title, html: value.html};
+				var a;
+				var li = $('<li>');
 				if(value['class']){
 					attributes['class'] = value['class'];
 				}
-				var a = $('<a></a>', attributes);
+				a = $('<a></a>', attributes);
 				a.click(clicked);
 				li.append(a);
 				ul.append(li);
@@ -42,7 +43,7 @@
 
 			menu.append(ul);
 
-			var div = $('<div>', {'class': 'textarea', contentEditable: true});
+			div = $('<div>', {'class': 'textarea', contentEditable: true});
 			div.html($(this).val());
 
 			wrapper.append(menu);
@@ -50,19 +51,86 @@
 
 			$(this).replaceWith(wrapper);
 
-			function clicked(e) {
+			function clicked (e) {
 				e.preventDefault();
 				var control = $(this).attr('data-control');
-				if(control === 'a'){
+				if (control === 'a') {
 					var url = prompt(options.controls.a.message, 'http://');
-					if(url){
+					if (url) {
 						document.execCommand('CreateLink', false, url);
 					}
 				}
 				else{
 					document.execCommand(options.controls[control].name, false, false);
 				}
+				if (options.cleanHtml) {
+					$.whatYouSimple.cleanHtml(div);
+				}
+				return false;
 			}
 		});
+	};
+
+	$.whatYouSimple = {
+		cleanHtml: function (elem, options) {
+			var $elem, $html;
+			var defaults = {
+				//nodeTypes: ['b', 'i', 'u', 'strike', 'div', 'p'],
+				whitelist: {
+					attr: ['href'],
+					style: ['font-weight:bold;', 'text-decoration:underline;']
+				}
+			};
+			options = $.extend(true, defaults, options);
+
+			function getAllowedStyles (styleStr) {
+				var l, i, matches, regex, retArr;
+				styleStr.replace(/\s/g, '');
+				l = options.whitelist.style.length;
+				for (i = 0; i < l; i++) {
+					regex = whitelist.style[i];
+					matches = styleStr.match(regex);
+					if (matches.length > 0) {
+						console.log(matches);
+						retArr.push(matches[0]);
+					}
+				}
+				return retArr.join(' ');
+			}
+
+			function cleanElem (elem) {
+				var attr;
+				var whitelist = ['href'];
+				var $elem = $(elem);
+				var attributes = elem.attributes;
+				var i = attributes.length;
+				while (i--) {
+					attr = attributes[i];
+					if ($.inArray(attr.name, whitelist) === -1) {
+						if (attr.name === 'style') {
+							$elem.attr('style', getAllowedStyles($elem.attr('style')));
+						}
+						$elem.removeAttr(attr.name);
+					}
+				}
+			}
+
+			function clean (elem) {
+				cleanElem(elem);
+				$.each($(elem).children(), function () {
+					clean(this);
+				});
+			}
+
+			$elem = $(elem);
+			//console.log($elem);
+			$html = $($elem.html());
+			console.log($html);
+			$.each($html, function () {
+				clean(this);
+			});
+			$elem.html($html);
+			return $html;
+		}
 	};
 }(jQuery));
